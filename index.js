@@ -20,7 +20,7 @@ module.exports = function (domjs/*, options*/) {
 		if (!isFunction(fn)) return script.apply(this, arguments);
 		localVars = slice.call(arguments, 1);
 		data = toTokens.call(fn);
-		argNames = data.args.split(',').map(trim);
+		argNames = data.args.trim() ? data.args.split(',').map(trim) : [];
 		if (argNames.length !== localVars.length) {
 			throw new TypeError("Script function signature doesn't match passed arguments count");
 		}
