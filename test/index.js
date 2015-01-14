@@ -4,7 +4,7 @@ var global        = require('es5-ext/global')
   , clear         = require('es5-ext/array/#/clear')
   , ObservableSet = require('observable-set')
   , Domjs         = require('domjs')
-  , argMock       = require('./__playground/arg-mock');
+  , argMock       = require('./__playground/get-arg-mock')();
 
 module.exports = function (t) {
 	var domjs = new Domjs(document), sets = [];

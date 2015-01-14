@@ -2,7 +2,7 @@
 
 var global  = require('es5-ext/global')
   , resolve = require('../../lib/resolve')
-  , argMock = require('../__playground/arg-mock');
+  , argMock = require('../__playground/get-arg-mock')();
 
 module.exports = function (t, a) {
 	var scriptId = 'fooBar23', legacyCallback, map, src, elo, sets = [];

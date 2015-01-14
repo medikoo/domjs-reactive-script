@@ -5,7 +5,7 @@ var global        = require('es5-ext/global')
   , ObservableSet = require('observable-set')
   , resolve       = require('../../lib/resolve')
   , generate      = require('../../lib/generate-source')
-  , argMock       = require('../__playground/arg-mock');
+  , argMock       = require('../__playground/get-arg-mock')();
 
 module.exports = function (t, a, d) {
 	var scriptId = 'fooBar23', map, sets = [], textNode, nuSet;
