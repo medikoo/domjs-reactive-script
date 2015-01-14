@@ -1,0 +1,35 @@
+{
+  "name": "domjs-reactive-script",
+  "version": "0.0.0",
+  "description": "Reactive generation of domjs script content",
+  "author": "Mariusz Nowak <medyk@medikoo.com> (http://www.medikoo.com/)",
+  "keywords": [
+    "domjs",
+    "script",
+    "reactive",
+    "observable"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/medikoo/domjs-reactive-script.git"
+  },
+  "dependencies": {
+    "es5-ext": "git://github.com/medikoo/es5-ext.git",
+    "es6-set": "~0.1.1",
+    "obsevable-value": "git://github.com/medikoo/observable-value.git",
+    "timers-ext": "0.1"
+  },
+  "devDependencies": {
+    "jsdom": "2",
+    "observable-set": "git://github.com/medikoo/observable-set.git",
+    "tad": "0.2",
+    "xlint": "~0.2.1",
+    "xlint-jslint-medikoo": "~0.1.2"
+  },
+  "scripts": {
+    "lint": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --no-cache --no-stream",
+    "lint-console": "node node_modules/xlint/bin/xlint --linter=node_modules/xlint-jslint-medikoo/index.js --watch",
+    "test": "node node_modules/tad/bin/tad"
+  },
+  "license": "MIT"
+}
