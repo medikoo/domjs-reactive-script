@@ -15,7 +15,7 @@ module.exports = function (t, a) {
 	a.deep(t(function (foo) { return 'bar'; }), { src: 'function (foo) { return \'bar\'; }',
 		setPaths: [], observables: [] });
 	a.deep(t(new Date(123456789)), { src: 'new Date(123456789)', setPaths: [], observables: [] });
-	a.deep(t(new Set(['raz', 23])), { src: '["raz",23]', setPaths: [[]], observables: [] });
+	a.deep(t(new Set(['raz', 23])), { src: '$.setify(["raz",23])', setPaths: [[]], observables: [] });
 	a.deep(t(['raz', 23]), { src: '["raz",23]', setPaths: [], observables: [] });
 	a.deep(t({ foo: 'bar', dwa: 23 }),
 		{ src: '{"foo":"bar","dwa":23}', setPaths: [], observables: [] });
@@ -28,7 +28,8 @@ module.exports = function (t, a) {
 				morda: /foo/g
 			}])
 		})
-	} }), { src: '{"foo":"bar","dwa":23,"trzy":{"elok":["foo",true],"miszka":{"marko":"raz",' +
-		'"zagalo":[{"morda":/foo/g}]}}}', setPaths: [['trzy', 'elok'], ['trzy', 'miszka', 'zagalo']],
+	} }), { src: '{"foo":"bar","dwa":23,"trzy":{"elok":$.setify(["foo",true]),"miszka":{"marko":' +
+		'"raz","zagalo":$.setify([{"morda":/foo/g}])}}}',
+		setPaths: [['trzy', 'elok'], ['trzy', 'miszka', 'zagalo']],
 		observables: [o1, o2, o3] });
 };
