@@ -7,6 +7,6 @@ To be used with applications built with domjs and observables
 
 	$ npm install domjs-reactive-script
 
-## Tests [![Build Status](https://travis-ci.org/medikoo/domjs-reactive-script.svg)](https://travis-ci.org/medikoo/domjs-reactive-sript)
+## Tests [![Build Status](https://travis-ci.org/medikoo/domjs-reactive-script.svg)](https://travis-ci.org/medikoo/domjs-reactive-script)
 
 	$ npm test
