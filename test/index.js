@@ -7,13 +7,15 @@ var global        = require('es5-ext/global')
   , argMock       = require('./__playground/get-arg-mock')();
 
 module.exports = function (t) {
-	var domjs = new Domjs(document), sets = [];
+	var domjs = new Domjs(document), sets = [], objMap, foos;
 	var $ = {
 		setify: function (obj) {
 			sets.push(obj);
 			return obj;
-		}
+		},
+		foos: foos = { foo: {}, bar: {}, miszka: {} }
 	};
+	objMap = [{ trzy: { objects: 'foos', objectValue: 'foos' } }];
 	t(domjs);
 	return {
 		"": function (a, d) {
@@ -22,13 +24,13 @@ module.exports = function (t) {
 			global.$ = $;
 			script = domjs.ns.script(function (elo) {
 				return elo;
-			}, argMock);
+			}, argMock, { objMap: objMap });
 			(new Function(script.firstChild.data))();
-			a.deep(sets, [['foo', true], [{ morda: /foo/g }]]);
+			a.deep(sets, [['foo', true], [foos.foo, foos.bar], [{ morda: /foo/g }]]);
 			clear.call(sets);
 			argMock.trzy.miszka.value = { morda: new ObservableSet(['foo']) };
 			setTimeout(function () {
-				a.deep(sets, [['foo', true], ['foo']]);
+				a.deep(sets, [['foo', true], [foos.foo, foos.bar], ['foo']]);
 				delete global.$;
 				d();
 			}, 10);

@@ -1,11 +1,13 @@
 'use strict';
 
-var Set             = require('es6-set')
+var global          = require('es5-ext/global')
+  , Set             = require('es6-set')
   , ObservableSet   = require('observable-set')
   , ObservableValue = require('observable-value');
 
 module.exports = function (t, a) {
-	var o1, o2, o3;
+	var o1, o2, o3, $;
+	global.$ = $ = {};
 	a.deep(t(), { src: 'undefined', setPaths: [], observables: [] });
 	a.deep(t(null), { src: 'null', setPaths: [], observables: [] });
 	a.deep(t(12.23), { src: '12.23', setPaths: [], observables: [] });
@@ -32,4 +34,13 @@ module.exports = function (t, a) {
 		'"raz","zagalo":$.setify([{"morda":/foo/g}])}}}',
 		setPaths: [['trzy', 'elok'], ['trzy', 'miszka', 'zagalo']],
 		observables: [o1, o2, o3] });
+
+	$.foos = { foo: {}, bar: {} };
+	$.setify = function (obj) { return obj; };
+	a((new Function('return ' + t({ __id__: 'foo' }, 'foos').src))(), $.foos.foo);
+	a.deep((new Function('return ' + t(new Set([{ __id__: 'foo' },
+		{ __id__: 'bar' }]), 'foos').src))(), [$.foos.foo, $.foos.bar]);
+	a.deep((new Function('return ' + t({ marko: new Set([{ __id__: 'foo' },
+		{ __id__: 'bar' }]) }, { marko: 'foos' }).src))(), { marko: [$.foos.foo, $.foos.bar] });
+	delete global.$;
 };
