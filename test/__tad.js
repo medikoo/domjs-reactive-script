@@ -3,7 +3,7 @@
 var document;
 
 try {
-	document = new (require('jsdom/lib/jsdom/living').Document)();
+	document = require('jsdom').jsdom();
 } catch (ignore) {}
 
 exports.context = document ? {

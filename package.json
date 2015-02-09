@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "domjs": "git://github.com/medikoo/domjs.git",
-    "jsdom": "2",
+    "jsdom": "3",
     "observable-set": "git://github.com/medikoo/observable-set.git",
     "tad": "0.2",
     "xlint": "~0.2.1",
