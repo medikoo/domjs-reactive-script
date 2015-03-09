@@ -14,10 +14,10 @@ var defaultGlobal    = require('es5-ext/global')
 
 module.exports = function (domjs/*, options*/) {
 	var script = domjs.ns.script, text = domjs.ns.text, options = Object(arguments[1])
-	  , objMap, global = options.global || defaultGlobal, scriptId, srcTextNode;
+	  , global = options.global || defaultGlobal;
 
 	return (domjs.ns.script = function (fn/* …localVars, options*/) {
-		var map, data, localVars, argNames, element, options;
+		var map, data, localVars, argNames, element, options, scriptId, srcTextNode, objMap;
 		if (!isFunction(fn)) return script.apply(this, arguments);
 		localVars = slice.call(arguments, 1);
 		data = toTokens.call(fn);

@@ -19,17 +19,23 @@ module.exports = function (t) {
 	t(domjs);
 	return {
 		"": function (a, d) {
-			var script;
+			var script, getElo;
 
 			global.$ = $;
 			script = domjs.ns.script(function (elo) {
-				return elo;
+				return function () { return elo.trzy.miszka.morda; };
 			}, argMock, { objMap: objMap });
-			(new Function(script.firstChild.data))();
+			getElo = (new Function('return ' + script.firstChild.data))();
+			script = domjs.ns.script(function (elo) {
+				return function () { return 'foo'; };
+			}, {});
+			(new Function('return ' + script.firstChild.data))();
 			a.deep(sets, [['foo', true], [foos.foo, foos.bar], [{ morda: /foo/g }]]);
 			clear.call(sets);
+			a(getElo(), undefined);
 			argMock.trzy.miszka.value = { morda: new ObservableSet(['foo']) };
 			setTimeout(function () {
+				a.deep(getElo(), ['foo']);
 				a.deep(sets, [['foo', true], [foos.foo, foos.bar], ['foo']]);
 				delete global.$;
 				d();
