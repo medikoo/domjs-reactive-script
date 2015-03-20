@@ -16,7 +16,7 @@
   "dependencies": {
     "es5-ext": "git://github.com/medikoo/es5-ext.git",
     "es6-set": "~0.1.1",
-    "obsevable-value": "git://github.com/medikoo/observable-value.git",
+    "observable-value": "git://github.com/medikoo/observable-value.git",
     "timers-ext": "0.1"
   },
   "devDependencies": {
